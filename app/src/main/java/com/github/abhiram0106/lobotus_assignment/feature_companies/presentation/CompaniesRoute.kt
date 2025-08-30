@@ -1,5 +1,6 @@
 package com.github.abhiram0106.lobotus_assignment.feature_companies.presentation
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,13 +10,20 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -31,12 +39,18 @@ import com.github.abhiram0106.lobotus_assignment.feature_companies.domain.model.
 import com.github.abhiram0106.lobotus_assignment.feature_companies.presentation.components.CompaniesTitleBarExpanded
 import com.github.abhiram0106.lobotus_assignment.feature_companies.presentation.components.CompanyListItem
 import com.github.abhiram0106.lobotus_assignment.feature_companies.presentation.state_and_actions.CompanyScreenUiAction
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
+import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
 fun CompaniesRoute(
     viewModel: CompaniesViewModel = koinViewModel(),
+    onScrollChange: (isScrollingUp: Boolean) -> Unit,
     onShowSnackBar: suspend (message: UiText, actionLabel: UiText?) -> Boolean,
 ) {
 
@@ -72,6 +86,7 @@ fun CompaniesRoute(
         onSearch = { viewModel.onUiAction(CompanyScreenUiAction.OnSearchQueryChanged(it)) },
         onClickFilters = {},
         onClickNearByClients = {},
+        onScrollChange = onScrollChange,
         onNoDialerApp = {
             coroutineScope.launch {
                 onShowSnackBar(UiText.StringResourceId(R.string.dialer_app_not_found), null)
@@ -81,10 +96,11 @@ fun CompaniesRoute(
             coroutineScope.launch {
                 onShowSnackBar(UiText.StringResourceId(R.string.email_app_not_found), null)
             }
-        }
+        },
     )
 }
 
+@OptIn(FlowPreview::class)
 @Composable
 fun CompaniesScreen(
     modifier: Modifier = Modifier,
@@ -95,7 +111,17 @@ fun CompaniesScreen(
     onClickNearByClients: () -> Unit,
     onNoDialerApp: () -> Unit,
     onNoEmailApp: () -> Unit,
+    onScrollChange: (isScrollingUp: Boolean) -> Unit,
 ) {
+
+    val listState = rememberLazyListState()
+    LaunchedEffect(listState) {
+        snapshotFlow { listState.lastScrolledBackward }
+            .debounce(50.milliseconds)
+            .distinctUntilChanged()
+            .collectLatest { onScrollChange(it) }
+    }
+
     Column(
         modifier = modifier.fillMaxSize()
     ) {
@@ -107,9 +133,10 @@ fun CompaniesScreen(
             modifier = Modifier.padding(vertical = 5.dp, horizontal = 20.dp)
         )
         LazyColumn(
+            state = listState,
             modifier = modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(6.dp),
-            contentPadding = PaddingValues(horizontal = 10.dp)
+            contentPadding = PaddingValues(start = 10.dp, end = 10.dp, bottom = 80.dp)
         ) {
             if (companies.loadState.refresh is LoadState.Loading) {
                 item {

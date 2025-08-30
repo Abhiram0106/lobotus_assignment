@@ -3,11 +3,12 @@ package com.github.abhiram0106.lobotus_assignment.core.presentation
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -23,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import com.github.abhiram0106.lobotus_assignment.core.navigation.AppNavHost
 import com.github.abhiram0106.lobotus_assignment.core.ui.theme.AppTheme
 import com.github.abhiram0106.lobotus_assignment.R
@@ -34,16 +36,17 @@ fun App(
 
     val snackBarHostState = remember { SnackbarHostState() }
     val context = LocalContext.current
+    var expandFAB by remember {
+        mutableStateOf(false)
+    }
 
     AppTheme {
         Scaffold(
             snackbarHost = { SnackbarHost(hostState = snackBarHostState) },
             bottomBar = {
-                val paddingValues = WindowInsets.navigationBars.asPaddingValues()
                 NavigationBar(
                     containerColor = MaterialTheme.colorScheme.primary,
                     contentColor = MaterialTheme.colorScheme.onPrimary,
-                    modifier = Modifier.padding(paddingValues)
                 ) {
                     appState.topLevelDestinations.forEach { topLevelDestination ->
                         val isSelected =
@@ -89,6 +92,28 @@ fun App(
                     }
                 }
             },
+            floatingActionButton = {
+                if (appState.showFAB()) {
+                    ExtendedFloatingActionButton(
+                        onClick = {},
+                        expanded = expandFAB,
+                        text = {
+                            Text(
+                                text = stringResource(R.string.company),
+                                style = MaterialTheme.typography.bodyLarge
+                            )
+                        },
+                        icon = {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_plus),
+                                contentDescription = null,
+                                modifier = Modifier.size(16.dp)
+                            )
+                        },
+                        shape = CircleShape
+                    )
+                }
+            },
             contentWindowInsets = WindowInsets.safeDrawing
         ) { paddingValues ->
             Box(
@@ -104,7 +129,8 @@ fun App(
                             message = message.asStringNonComposable(context),
                             actionLabel = actionLabel?.asStringNonComposable(context),
                         ) == SnackbarResult.ActionPerformed
-                    }
+                    },
+                    onScrollChange = { expandFAB = it }
                 )
             }
         }

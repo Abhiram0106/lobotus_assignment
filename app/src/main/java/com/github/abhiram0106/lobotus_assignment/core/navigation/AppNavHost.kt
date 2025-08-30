@@ -16,6 +16,7 @@ import com.github.abhiram0106.lobotus_assignment.core.util.UiText
 @Composable
 fun AppNavHost(
     navHostController: NavHostController,
+    onScrollChange: (isScrollingUp: Boolean) -> Unit,
     onShowSnackBar: suspend (message: UiText, actionLabel: UiText?) -> Boolean
 ) {
     NavHost(
@@ -63,15 +64,13 @@ fun AppNavHost(
         }
     ) {
         homeGraph(
-            navController = navHostController,
             onShowSnackBar = onShowSnackBar
         )
         companiesGraph(
-            navController = navHostController,
+            onScrollChange = onScrollChange,
             onShowSnackBar = onShowSnackBar
         )
         settingsGraph(
-            navController = navHostController,
             onShowSnackBar = onShowSnackBar
         )
     }

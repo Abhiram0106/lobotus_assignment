@@ -12,6 +12,7 @@
     <string name="dialer_app_not_found">Dialer app not found</string>
     <string name="email_app_not_found">Email app not found</string>
     <string name="nothing_found">Nothing found</string>
+    <string name="company">COMPANY</string>
 
     <!--    feature settings-->
     <string name="others">Others</string>
