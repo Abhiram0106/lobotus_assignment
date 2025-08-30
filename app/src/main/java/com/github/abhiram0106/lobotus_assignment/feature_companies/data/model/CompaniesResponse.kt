@@ -11,11 +11,6 @@ data class CompaniesResponse(
 @Serializable
 data class CompanyResponse(
     val clientID: Int,
-    val countryID: Int,
-    val zoneID: Int,
-    val stateID: Int,
-    val cityID: Int,
-    val stageID: Int,
     @SerialName("clientName") val companyName: String,
     val contactPersonName: String,
     @SerialName("mobile") val phoneNumber: Long,

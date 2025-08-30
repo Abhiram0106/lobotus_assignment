@@ -5,12 +5,7 @@ import com.github.abhiram0106.lobotus_assignment.feature_companies.data.model.Co
 import com.github.abhiram0106.lobotus_assignment.feature_companies.domain.model.CompanyData
 
 fun CompanyResponse.toCompanyData(): CompanyData = CompanyData(
-    id = clientID.toString()
-            + countryID
-            + zoneID
-            + stateID
-            + cityID
-            + stageID,
+    id = clientID.toString(),
     companyName = companyName,
     contactPersonName = contactPersonName,
     phoneNumber = phoneNumber.toString(),

@@ -4,6 +4,6 @@ import com.github.abhiram0106.lobotus_assignment.feature_companies.domain.model.
 
 interface CompaniesRepository {
 
-    suspend fun getCompanies(userId: String, pageSize: Int, currentPage: Int, enabledStatus: Int):
+    suspend fun getCompanies(searchQuery: String, pageSize: Int, currentPage: Int):
             Result<List<CompanyData>>
 }

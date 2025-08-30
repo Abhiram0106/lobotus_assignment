@@ -1,18 +1,29 @@
 package com.github.abhiram0106.lobotus_assignment.feature_companies.presentation
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.paging.LoadState
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.github.abhiram0106.lobotus_assignment.R
 import com.github.abhiram0106.lobotus_assignment.core.util.UiText
 import com.github.abhiram0106.lobotus_assignment.feature_companies.domain.model.CompanyData
@@ -29,6 +40,7 @@ fun CompaniesRoute(
 ) {
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val companies = viewModel.companiesFlow.collectAsLazyPagingItems()
     val coroutineScope = rememberCoroutineScope()
 
     LaunchedEffect(uiState.snackBarMessage) {
@@ -38,9 +50,24 @@ fun CompaniesRoute(
         }
     }
 
+    LaunchedEffect(companies.loadState) {
+        val errorMessage = if (companies.loadState.refresh is LoadState.Error) {
+            (companies.loadState.refresh as LoadState.Error).error.message
+        } else if (companies.loadState.append is LoadState.Error) {
+            (companies.loadState.append as LoadState.Error).error.message
+        } else {
+            null
+        }
+
+        if (errorMessage != null) {
+            onShowSnackBar(UiText.DynamicString(errorMessage), null)
+            viewModel.clearSnackBar()
+        }
+    }
+
     CompaniesScreen(
         searchQuery = uiState.searchQuery,
-        companies = uiState.companies,
+        companies = companies,
         onSearch = { viewModel.onUiAction(CompanyScreenUiAction.OnSearchQueryChanged(it)) },
         onClickFilters = {},
         onClickNearByClients = {},
@@ -61,7 +88,7 @@ fun CompaniesRoute(
 fun CompaniesScreen(
     modifier: Modifier = Modifier,
     searchQuery: String,
-    companies: List<CompanyData>,
+    companies: LazyPagingItems<CompanyData>,
     onSearch: (String) -> Unit,
     onClickFilters: () -> Unit,
     onClickNearByClients: () -> Unit,
@@ -82,16 +109,46 @@ fun CompaniesScreen(
             modifier = modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            items(
-                items = companies,
-                key = { it.id }
+            if (companies.loadState.refresh is LoadState.Loading) {
+                item {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 10.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator(color = MaterialTheme.colorScheme.onBackground)
+                    }
+                }
+            }
+
+            if ((companies.loadState.refresh !is LoadState.Loading) &&
+                (companies.loadState.append !is LoadState.Loading) &&
+                companies.itemCount == 0
             ) {
-                CompanyListItem(
-                    data = it,
-                    onClickReTag = {},
-                    onNoEmailApp = onNoEmailApp,
-                    onNoDialerApp = onNoDialerApp
-                )
+                item {
+                    Text(
+                        text = stringResource(R.string.nothing_found),
+                        style = MaterialTheme.typography.bodyMedium,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 10.dp)
+                    )
+                }
+            }
+
+            items(
+                count = companies.itemCount,
+            ) {
+                companies[it]?.let { data ->
+                    CompanyListItem(
+                        data = data,
+                        onClickReTag = {},
+                        onNoEmailApp = onNoEmailApp,
+                        onNoDialerApp = onNoDialerApp
+                    )
+                }
             }
         }
     }
