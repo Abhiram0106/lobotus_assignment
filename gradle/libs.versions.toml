@@ -13,6 +13,7 @@ kotlinSerialization = "1.9.0"
 ktor = "3.2.3"
 koin = "4.1.0"
 paging = "3.3.6"
+constraintLayout = "1.1.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -43,6 +44,8 @@ koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = 
 
 paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
 paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging" }
+
+constraint-layout = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintLayout" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
