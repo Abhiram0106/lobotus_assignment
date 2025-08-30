@@ -4,4 +4,15 @@
     <string name="companies">Companies</string>
     <string name="settings">Settings</string>
     <string name="navigate_to_x">Navigate to %1$s</string>
+
+    <!--    feature settings-->
+    <string name="others">Others</string>
+    <string name="base_location">Base Location</string>
+    <string name="track_me_every">Track me every</string>
+    <string name="remind_me">Remind me</string>
+    <string name="early">early</string>
+    <string name="default_mot">Default MOT</string>
+    <string name="refer_metricinfo">Refer MetricInfo</string>
+    <string name="theme">Theme</string>
+    <string name="logout">Logout</string>
 </resources>
