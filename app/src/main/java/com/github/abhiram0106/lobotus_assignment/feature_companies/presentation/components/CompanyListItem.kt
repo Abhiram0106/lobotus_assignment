@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -38,10 +39,9 @@ fun CompanyListItem(
 ) {
     val context = LocalContext.current
     Card(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(8.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
         shape = MaterialTheme.shapes.medium,
+        modifier = modifier.fillMaxWidth()
     ) {
         Column(
             modifier = Modifier.padding(12.dp)
@@ -78,7 +78,7 @@ fun CompanyListItem(
                 }
             }
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(25.dp))
 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(

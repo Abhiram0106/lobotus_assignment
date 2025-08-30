@@ -3,6 +3,7 @@ package com.github.abhiram0106.lobotus_assignment.feature_companies.presentation
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -103,11 +104,12 @@ fun CompaniesScreen(
             onSearch = onSearch,
             onClickFilters = onClickFilters,
             onClickNearByClients = onClickNearByClients,
-            modifier = Modifier.padding(vertical = 5.dp)
+            modifier = Modifier.padding(vertical = 5.dp, horizontal = 20.dp)
         )
         LazyColumn(
             modifier = modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(10.dp)
+            verticalArrangement = Arrangement.spacedBy(6.dp),
+            contentPadding = PaddingValues(horizontal = 10.dp)
         ) {
             if (companies.loadState.refresh is LoadState.Loading) {
                 item {
