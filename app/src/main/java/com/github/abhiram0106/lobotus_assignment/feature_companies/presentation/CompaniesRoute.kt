@@ -1,6 +1,5 @@
 package com.github.abhiram0106.lobotus_assignment.feature_companies.presentation
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -18,11 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,8 +31,8 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.github.abhiram0106.lobotus_assignment.R
 import com.github.abhiram0106.lobotus_assignment.core.util.UiText
 import com.github.abhiram0106.lobotus_assignment.feature_companies.domain.model.CompanyData
-import com.github.abhiram0106.lobotus_assignment.feature_companies.presentation.components.CompaniesTitleBarExpanded
 import com.github.abhiram0106.lobotus_assignment.feature_companies.presentation.components.CompanyListItem
+import com.github.abhiram0106.lobotus_assignment.feature_companies.presentation.components.MotionLayoutCompaniesTitleBar
 import com.github.abhiram0106.lobotus_assignment.feature_companies.presentation.state_and_actions.CompanyScreenUiAction
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
@@ -115,6 +110,15 @@ fun CompaniesScreen(
 ) {
 
     val listState = rememberLazyListState()
+    val progress by remember {
+        derivedStateOf {
+            if (listState.firstVisibleItemIndex == 0) {
+                val offset = listState.firstVisibleItemScrollOffset.coerceAtMost(300)
+                offset / 300f
+            } else 1f
+        }
+    }
+
     LaunchedEffect(listState) {
         snapshotFlow { listState.lastScrolledBackward }
             .debounce(50.milliseconds)
@@ -125,12 +129,12 @@ fun CompaniesScreen(
     Column(
         modifier = modifier.fillMaxSize()
     ) {
-        CompaniesTitleBarExpanded(
+        MotionLayoutCompaniesTitleBar(
+            progress = progress,
             searchQuery = searchQuery,
             onSearch = onSearch,
             onClickFilters = onClickFilters,
-            onClickNearByClients = onClickNearByClients,
-            modifier = Modifier.padding(vertical = 5.dp, horizontal = 20.dp)
+            onClickNearByClients = onClickNearByClients
         )
         LazyColumn(
             state = listState,

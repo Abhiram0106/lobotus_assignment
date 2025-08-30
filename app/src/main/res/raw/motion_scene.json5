@@ -1,0 +1,67 @@
+{
+  ConstraintSets: {
+    start: {
+      company: {
+        start: ['parent', 'start', 15],
+        top: ['parent', 'top', 15]
+      },
+      nearby: {
+        end: ['parent', 'end', 15],
+        top: ['parent', 'top', 15],
+        alpha: 1,
+        translationX: 0,
+      },
+      search: {
+        start: ['parent', 'start', 15],
+        top: ['company', 'bottom', 15],
+        end: ['filter', 'start', 0],
+        bottom: ['parent', 'bottom', 15],
+        height: 'wrap',
+        width: 'spread',
+      },
+      filter: {
+        top: ['search', 'top', 0],
+        bottom: ['search', 'bottom', 0],
+        end: ['parent', 'end', 15]
+      }
+    },
+    end: {
+      company: {
+        start: ['parent', 'start', 15],
+        top: ['parent', 'top', 15]
+      },
+      nearby: {
+        end: ['parent', 'end', 15],
+        top: ['parent', 'top', 15],
+        alpha: 0,
+        translationX: 30,
+      },
+      search: {
+        top: ['parent', 'top', 15],
+        end: ['filter', 'start', 0],
+        bottom: ['parent', 'bottom', 15],
+        height: 50,
+        width: 50,
+      },
+      filter: {
+        top: ['search', 'top', 0],
+        bottom: ['search', 'bottom', 0],
+        end: ['parent', 'end', 15]
+      }
+    }
+  },
+  Transitions: {
+    default: {
+      from: 'start',
+      to: 'end',
+      KeyFrames: {
+        KeyAttributes: [{
+          target: 'nearby',
+          frames: [0, 100],
+          translationX: [0, 30],
+          alpha: [1, 0],
+        }],
+      }
+    }
+  }
+}

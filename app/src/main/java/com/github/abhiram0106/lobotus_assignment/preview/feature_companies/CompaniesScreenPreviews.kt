@@ -4,30 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.github.abhiram0106.lobotus_assignment.core.ui.theme.AppTheme
 import com.github.abhiram0106.lobotus_assignment.feature_companies.domain.model.CompanyData
-import com.github.abhiram0106.lobotus_assignment.feature_companies.presentation.components.CompaniesTitleBar
-import com.github.abhiram0106.lobotus_assignment.feature_companies.presentation.components.CompaniesTitleBarExpanded
 import com.github.abhiram0106.lobotus_assignment.feature_companies.presentation.components.CompanyListItem
-
-@Preview(showBackground = true)
-@Composable
-private fun CompaniesTitleBarPreview() {
-    AppTheme(false) {
-        CompaniesTitleBar()
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun CompaniesTitleBarExpandedPreview() {
-    AppTheme(false) {
-        CompaniesTitleBarExpanded(
-            searchQuery = "",
-            onSearch = {},
-            onClickNearByClients = {},
-            onClickFilters = {}
-        )
-    }
-}
 
 @Preview(showBackground = true)
 @Composable
