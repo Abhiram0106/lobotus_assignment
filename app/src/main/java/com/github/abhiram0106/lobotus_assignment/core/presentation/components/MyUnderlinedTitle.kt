@@ -20,7 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun MyTitleBar(
+fun MyUnderlinedTitle(
     modifier: Modifier = Modifier,
     title: String,
     style: TextStyle = MaterialTheme.typography.headlineMedium

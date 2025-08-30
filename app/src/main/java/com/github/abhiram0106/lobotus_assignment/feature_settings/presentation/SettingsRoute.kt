@@ -2,7 +2,6 @@ package com.github.abhiram0106.lobotus_assignment.feature_settings.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,7 +13,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
@@ -33,7 +31,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
-import com.github.abhiram0106.lobotus_assignment.core.presentation.components.MyTitleBar
+import com.github.abhiram0106.lobotus_assignment.core.presentation.components.MyUnderlinedTitle
 import com.github.abhiram0106.lobotus_assignment.core.util.UiText
 import com.github.abhiram0106.lobotus_assignment.R
 import com.github.abhiram0106.lobotus_assignment.feature_settings.presentation.components.SettingsItem
@@ -70,13 +68,13 @@ fun SettingsScreen(
     onCheckRemind: (Boolean) -> Unit,
 ) {
     Column(modifier = modifier.fillMaxSize()) {
-        MyTitleBar(
+        MyUnderlinedTitle(
             title = stringResource(R.string.settings)
         )
         Spacer(modifier = Modifier.height(10.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {
             Image(
-                painter = painterResource(R.drawable.ic_launcher_foreground),
+                painter = painterResource(R.drawable.ic_check_filled),
                 contentDescription = null,
                 modifier = Modifier.size(64.dp)
             )
@@ -97,7 +95,7 @@ fun SettingsScreen(
         }
         Spacer(modifier = Modifier.height(20.dp))
 
-        MyTitleBar(
+        MyUnderlinedTitle(
             title = stringResource(R.string.others),
             style = MaterialTheme.typography.headlineSmall
         )
@@ -130,7 +128,7 @@ fun SettingsScreen(
         )
 
         Spacer(modifier = Modifier.height(20.dp))
-        MyTitleBar(
+        MyUnderlinedTitle(
             title = stringResource(R.string.settings),
             style = MaterialTheme.typography.headlineSmall
         )
