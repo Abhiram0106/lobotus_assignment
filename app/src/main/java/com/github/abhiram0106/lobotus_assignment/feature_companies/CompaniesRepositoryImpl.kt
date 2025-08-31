@@ -1,6 +1,5 @@
 package com.github.abhiram0106.lobotus_assignment.feature_companies
 
-import android.util.Log
 import com.github.abhiram0106.lobotus_assignment.feature_companies.domain.CompaniesRepository
 import com.github.abhiram0106.lobotus_assignment.feature_companies.domain.CompaniesService
 import com.github.abhiram0106.lobotus_assignment.feature_companies.domain.model.CompanyData

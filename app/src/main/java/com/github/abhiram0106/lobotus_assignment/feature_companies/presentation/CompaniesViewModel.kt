@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import com.github.abhiram0106.lobotus_assignment.core.util.UiText
 import com.github.abhiram0106.lobotus_assignment.feature_companies.domain.CompaniesRepository
 import com.github.abhiram0106.lobotus_assignment.feature_companies.domain.paging.CompaniesPagingSource
 import com.github.abhiram0106.lobotus_assignment.feature_companies.presentation.state_and_actions.CompanyScreenUiAction
@@ -19,7 +18,6 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.milliseconds
 
 class CompaniesViewModel(

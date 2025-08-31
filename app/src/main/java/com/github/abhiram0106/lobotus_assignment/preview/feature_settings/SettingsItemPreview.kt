@@ -6,9 +6,9 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.github.abhiram0106.lobotus_assignment.R
 import com.github.abhiram0106.lobotus_assignment.core.ui.theme.AppTheme
 import com.github.abhiram0106.lobotus_assignment.feature_settings.presentation.components.SettingsItem
-import com.github.abhiram0106.lobotus_assignment.R
 
 @Preview(showBackground = true)
 @Composable

@@ -12,7 +12,6 @@ import io.ktor.client.request.request
 import io.ktor.http.isSuccess
 import io.ktor.utils.io.CancellationException
 import java.net.UnknownHostException
-import kotlin.Exception
 
 suspend inline fun <reified T : Any> HttpClient.handleApi(req: HttpRequestBuilder.() -> Unit): Result<T> {
     return try {

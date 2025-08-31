@@ -24,8 +24,8 @@ import androidx.constraintlayout.compose.ExperimentalMotionApi
 import androidx.constraintlayout.compose.MotionLayout
 import androidx.constraintlayout.compose.MotionScene
 import androidx.constraintlayout.compose.layoutId
-import com.github.abhiram0106.lobotus_assignment.core.presentation.components.MyUnderlinedTitle
 import com.github.abhiram0106.lobotus_assignment.R
+import com.github.abhiram0106.lobotus_assignment.core.presentation.components.MyUnderlinedTitle
 
 @OptIn(ExperimentalMotionApi::class)
 @Composable

@@ -1,10 +1,10 @@
 package com.github.abhiram0106.lobotus_assignment.core.navigation
 
 import androidx.annotation.DrawableRes
+import com.github.abhiram0106.lobotus_assignment.R
 import com.github.abhiram0106.lobotus_assignment.core.util.UiText
 import kotlinx.serialization.Serializable
 import kotlin.reflect.KClass
-import com.github.abhiram0106.lobotus_assignment.R
 
 enum class TopLevelDestination(
     @DrawableRes val icon: Int,

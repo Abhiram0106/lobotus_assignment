@@ -1,5 +1,6 @@
 package com.github.abhiram0106.lobotus_assignment.feature_companies.data
 
+import com.github.abhiram0106.lobotus_assignment.BuildConfig
 import com.github.abhiram0106.lobotus_assignment.core.util.Endpoint
 import com.github.abhiram0106.lobotus_assignment.core.util.handleApi
 import com.github.abhiram0106.lobotus_assignment.feature_companies.data.model.CompaniesResponse
@@ -8,9 +9,6 @@ import io.ktor.client.HttpClient
 import io.ktor.client.request.header
 import io.ktor.http.HttpMethod
 import io.ktor.http.appendPathSegments
-import io.ktor.http.headers
-import kotlinx.serialization.json.Json
-import com.github.abhiram0106.lobotus_assignment.BuildConfig
 
 class CompaniesServiceImpl(private val httpClient: HttpClient) : CompaniesService {
     override suspend fun getCompanies(
@@ -20,10 +18,6 @@ class CompaniesServiceImpl(private val httpClient: HttpClient) : CompaniesServic
         currentPage: Int,
         enabledStatus: Int
     ): Result<CompaniesResponse> {
-
-//        val json = Json { ignoreUnknownKeys = true }
-//        val data = json.decodeFromString<CompaniesResponse>(Endpoint.SAMPLE_RESPONSE)
-//        return Result.success(data)
 
         return httpClient.handleApi {
             url {
