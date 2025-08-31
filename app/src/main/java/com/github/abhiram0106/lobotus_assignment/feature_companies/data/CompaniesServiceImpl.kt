@@ -21,23 +21,23 @@ class CompaniesServiceImpl(private val httpClient: HttpClient) : CompaniesServic
         enabledStatus: Int
     ): Result<CompaniesResponse> {
 
-        val json = Json { ignoreUnknownKeys = true }
-        val data = json.decodeFromString<CompaniesResponse>(Endpoint.SAMPLE_RESPONSE)
-        return Result.success(data)
+//        val json = Json { ignoreUnknownKeys = true }
+//        val data = json.decodeFromString<CompaniesResponse>(Endpoint.SAMPLE_RESPONSE)
+//        return Result.success(data)
 
-//        return httpClient.handleApi {
-//            url {
-//                appendPathSegments(Endpoint.GET_COMPANIES)
-//                parameters.apply {
-////                    append(name = "/*TODO*/", value = searchQuery)
-//                    append(name = "UserId", value = userId)
-//                    append(name = "PageSize", value = pageSize.toString())
-//                    append(name = "CurrentPage", value = currentPage.toString())
-//                    append(name = "EnabledStatus", value = enabledStatus.toString())
-//                }
-//                header("Travelize_Authentication", BuildConfig.TOKEN)
-//            }
-//            method = HttpMethod.Get
-//        }
+        return httpClient.handleApi {
+            url {
+                appendPathSegments(Endpoint.GET_COMPANIES)
+                parameters.apply {
+                    append(name = "Search", value = searchQuery)
+                    append(name = "UserId", value = userId)
+                    append(name = "PageSize", value = pageSize.toString())
+                    append(name = "CurrentPage", value = currentPage.toString())
+                    append(name = "EnabledStatus", value = enabledStatus.toString())
+                }
+                header("Travelize_Authentication", BuildConfig.TOKEN)
+            }
+            method = HttpMethod.Get
+        }
     }
 }

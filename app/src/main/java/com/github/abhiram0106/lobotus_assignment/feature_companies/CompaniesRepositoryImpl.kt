@@ -13,12 +13,22 @@ class CompaniesRepositoryImpl(private val companiesService: CompaniesService) :
         pageSize: Int,
         currentPage: Int
     ): Result<List<CompanyData>> {
-        return companiesService.getCompanies(
+        val result = companiesService.getCompanies(
             searchQuery = searchQuery,
             userId = "USR5021",
             pageSize = pageSize,
             currentPage = currentPage,
             enabledStatus = 1
         ).toDomain()
+
+        if (result.isFailure || searchQuery.isBlank()) {
+            return result
+        }
+
+        val filtered =
+            result.getOrNull()?.filter { it.companyName.contains(searchQuery, ignoreCase = true) }
+                ?: emptyList()
+
+        return Result.success(filtered)
     }
 }
