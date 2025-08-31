@@ -10,6 +10,7 @@ import io.ktor.http.HttpMethod
 import io.ktor.http.appendPathSegments
 import io.ktor.http.headers
 import kotlinx.serialization.json.Json
+import com.github.abhiram0106.lobotus_assignment.BuildConfig
 
 class CompaniesServiceImpl(private val httpClient: HttpClient) : CompaniesService {
     override suspend fun getCompanies(
@@ -34,7 +35,7 @@ class CompaniesServiceImpl(private val httpClient: HttpClient) : CompaniesServic
 //                    append(name = "CurrentPage", value = currentPage.toString())
 //                    append(name = "EnabledStatus", value = enabledStatus.toString())
 //                }
-//                header("Travelize_Authentication", Endpoint.TOKEN)
+//                header("Travelize_Authentication", BuildConfig.TOKEN)
 //            }
 //            method = HttpMethod.Get
 //        }

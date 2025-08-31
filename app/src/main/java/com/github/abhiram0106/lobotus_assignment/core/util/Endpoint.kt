@@ -4,7 +4,6 @@ object Endpoint {
     const val BASE_URL = "https://api.metricinfo.com/api/"
     const val GET_COMPANIES = "Client/Get"
 
-    const val TOKEN = "P/xgewt8+bhG6xYVveE+lLIjQSIKaUnoj9f8NHYHqQo8uz/gpTuRBMDBZhpDm6QuLgamO/z/X6HgJT5NFtUSV9hTc7a/EtuKRXwzbtt8jXe2epiA5dOkebouO8Hl5QM4+lhHngEiz1RHQ47tc1jTVIDBU7WHCtvJPFex/ez13NB+TTXptqHAse8K9vZ4FsWNXcV4gCQL+FJg2c2pCUQNmLe9pCqYbt5iGggMYOkquaMovrlI3mKRtwX8X04nJeBGnjKPaje51a7UUCBuJigfiUbc1kIY4gyafNWxhCVl80CZ4/3lHjaNYIhxgf0aUWOQ"
 
     val SAMPLE_RESPONSE = """
         {
