@@ -5,6 +5,18 @@
     <string name="settings">Settings</string>
     <string name="navigate_to_x">Navigate to %1$s</string>
 
+    <!--    feature home-->
+    <string name="metricinfo">MetricInfo</string>
+    <string name="you_are_on_duty">You are on duty…</string>
+    <string name="check_out">Check Out</string>
+    <string name="check_in_time">Check In Time</string>
+    <string name="check_in_location">Check In Location</string>
+    <string name="quick_actions">Quick Actions</string>
+    <string name="current_location">Current Location</string>
+    <string name="my_visit">My Visit</string>
+    <string name="direct">Direct</string>
+    <string name="schedule">Schedule</string>
+
     <!--    feature companies-->
     <string name="near_by_clients">Near by Clients</string>
     <string name="search_dot_dot_dot">Search ....</string>

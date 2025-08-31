@@ -1,0 +1,181 @@
+{
+  ConstraintSets: {
+    start: {
+      "metricInfo": {
+        start: ['parent', 'start', 15],
+        top: ['parent', 'top', 15]
+      },
+      iconNotificationBell: {
+        top: ['parent', 'top', 15],
+        end: ['iconMoreVert', 'start', 25]
+      },
+      iconMoreVert: {
+        top: ['parent', 'top', 15],
+        end: ['parent', 'end', 15]
+      },
+      imageLogo: {
+        start: ['parent', 'start', 15],
+        top: ['imageChair', 'top', 15],
+        bottom: ['imageChair', 'bottom', 0],
+        height: 100,
+        width: 100,
+      },
+      imageChair: {
+        top: ['parent', 'top', 50],
+        end: ['parent', 'end', 15],
+        height: 150,
+        width: 150
+      },
+      textHiDemoYouAreOnDuty: {
+        start: ['parent', 'start', 15],
+        top: ['imageChair', 'bottom', 0],
+      },
+      textDutyDuration: {
+        start: ['textHiDemoYouAreOnDuty', 'start', 0],
+        top: ['textHiDemoYouAreOnDuty', 'bottom', 10],
+        alpha: 0,
+      },
+      textCheckInTimeLocationBaseLocation: {
+        start: ['parent', 'start', 15],
+        top: ['parent', 'top', 250],
+        translationY: 0,
+        alpha: 0,
+      },
+      rowQuickActionsStatic: {
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
+        bottom: ['textCurrentLocation', 'top', 25],
+        width: 'parent',
+        alpha: 1,
+      },
+      textCurrentLocation: {
+        start: ['rowBottomActions', 'start', 0],
+        end: ['rowBottomActions', 'end', 0],
+        bottom: ['rowBottomActions', 'top', 80],
+        alpha: 1,
+      },
+      buttonCheckOut: {
+        start: ['rowBottomActions', 'start', 0],
+        end: ['rowBottomActions', 'end', 0],
+        bottom: ['rowBottomActions', 'top', 10],
+        width: 300,
+      },
+      rowBottomActions: {
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
+        bottom: ['parent', 'bottom', 10],
+        width: 'spread',
+        alpha: 1,
+        translationY: 0,
+      },
+      rowQuickActionsDynamic: {
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
+        bottom: ['textCurrentLocation', 'top', 25],
+        width: 'parent',
+        alpha: 0
+      },
+      backgroundWavyShape: {
+        start: ['parent', 'start', 0],
+        top: ['parent', 'top', 0],
+        end: ['parent', 'end', 0],
+        bottom: ['parent', 'bottom', 0],
+        width: 'parent',
+        height: 'parent',
+        translationY: 0,
+      }
+    },
+    end: {
+      "metricInfo": {
+        start: ['parent', 'start', 15],
+        top: ['parent', 'top', 15]
+      },
+      iconNotificationBell: {
+        top: ['parent', 'top', 15],
+        end: ['iconMoreVert', 'start', 25]
+      },
+      iconMoreVert: {
+        top: ['parent', 'top', 15],
+        end: ['parent', 'end', 15]
+      },
+      imageLogo: {
+        top: ['iconNotificationBell', 'top', 0],
+        end: ['iconNotificationBell', 'start', 15],
+        bottom: ['iconNotificationBell', 'bottom', 0],
+        height: 50,
+        width: 50,
+      },
+      imageChair: {
+        top: ['parent', 'top', 70],
+        end: ['parent', 'end', 15],
+        height: 150,
+        width: 150
+      },
+      textHiDemoYouAreOnDuty: {
+        start: ['parent', 'start', 15],
+        top: ['imageChair', 'top', 0],
+        bottom: ['imageChair', 'bottom', 15],
+      },
+      textDutyDuration: {
+        start: ['textHiDemoYouAreOnDuty', 'start', 0],
+        top: ['textHiDemoYouAreOnDuty', 'bottom', 15],
+        alpha: 1,
+      },
+      textCheckInTimeLocationBaseLocation: {
+        start: ['parent', 'start', 15],
+        top: ['parent', 'top', 250],
+        translationY: 20,
+        alpha: 1,
+      },
+      rowQuickActionsStatic: {
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
+        bottom: ['parent', 'bottom', 90],
+        width: 'parent',
+        alpha: 0,
+      },
+      textCurrentLocation: {
+        start: ['rowBottomActions', 'start', 0],
+        end: ['rowBottomActions', 'end', 0],
+        bottom: ['rowBottomActions', 'top', 80],
+        translationY: -30,
+        alpha: 0,
+      },
+      buttonCheckOut: {
+        start: ['textDutyDuration', 'start', 0],
+        top: ['textDutyDuration', 'bottom', 15],
+        width: 175,
+      },
+      rowBottomActions: {
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
+        bottom: ['parent', 'bottom', 10],
+        width: 'spread',
+        alpha: 0,
+        translationY: -20,
+      },
+      rowQuickActionsDynamic: {
+        start: ['parent', 'start', 0],
+        end: ['parent', 'end', 0],
+        bottom: ['parent', 'bottom', 90],
+        width: 'parent',
+        alpha: 1
+      },
+      backgroundWavyShape: {
+        start: ['parent', 'start', 0],
+        top: ['parent', 'top', 0],
+        end: ['parent', 'end', 0],
+        bottom: ['parent', 'bottom', 0],
+        width: 'parent',
+        height: 'parent',
+        translationY: -80,
+      }
+    }
+  },
+  Transitions: {
+    default: {
+      from: 'start',
+      to: 'end',
+    }
+  }
+}

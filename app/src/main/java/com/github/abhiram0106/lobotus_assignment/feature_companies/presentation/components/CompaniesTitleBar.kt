@@ -39,7 +39,7 @@ fun MotionLayoutCompaniesTitleBar(
 ) {
     val context = LocalContext.current
     val motionScene = remember {
-        context.resources.openRawResource(R.raw.motion_scene)
+        context.resources.openRawResource(R.raw.motion_scene_companies)
             .readBytes().decodeToString()
     }
     MotionLayout(
